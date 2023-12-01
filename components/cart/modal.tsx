@@ -13,10 +13,6 @@ import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
 import OpenCart from './open-cart';
 
-type MerchandiseSearchParams = {
-  [key: string]: string;
-};
-
 export default function CartModal({ cart }: { cart: CommerceCart | undefined }) {
   const [isOpen, setIsOpen] = useState(false);
   const [totalQuantity, setTotalQuantity] = useState(0);

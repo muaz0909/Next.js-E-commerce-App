@@ -40,7 +40,7 @@ function SubmitButton({ type }: { type: 'plus' | 'minus' }) {
 export function EditItemQuantityButton({ item, type }: { item: CommerceCartItem; type: 'plus' | 'minus' }) {
   const [message, formAction] = useFormState(updateItemQuantity, null);
   const payload = {
-    lineId: item.productId,
+    productId: item.productId,
     quantity: type === 'plus' ? item.quantity + 1 : item.quantity - 1
   };
   const actionWithVariant = formAction.bind(null, payload);

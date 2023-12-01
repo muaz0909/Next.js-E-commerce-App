@@ -42,8 +42,7 @@ export async function removeItem(productId: string) {
 export async function updateItemQuantity(
   prevState: any,
   payload: {
-    lineId: string;
-    variantId: string;
+    productId: string;
     quantity: number;
   }
 ) {
@@ -53,15 +52,15 @@ export async function updateItemQuantity(
     return 'Missing cart ID';
   }
 
-  const { lineId, variantId, quantity } = payload;
+  const { productId, quantity } = payload;
 
   try {
     if (quantity === 0) {
-      await removeItemFromCart(cartId, lineId);
+      await removeItemFromCart(cartId, productId);
       return;
     }
 
-    await updateCartItem(cartId, lineId, quantity);
+    await updateCartItem(cartId, productId, quantity);
   } catch (e) {
     return 'Error updating item quantity';
   }
