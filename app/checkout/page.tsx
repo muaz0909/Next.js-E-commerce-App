@@ -14,9 +14,9 @@ interface CheckoutProps {
 }
 
 // Modify the Checkout component to accept the props
-const Checkout: React.FC<CheckoutProps> = ({ cart }) => {
-    // ... implementation of the Checkout component ...
-};
+// const Checkout: React.FC<CheckoutProps> = ({ cart }) => {
+//     // ... implementation of the Checkout component ...
+// };
 
 export default async function CheckoutPage() {
     const cartId = cookies().get('cartId')?.value;
