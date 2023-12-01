@@ -22,8 +22,6 @@ export function ProductDescription({ product }: { product: Product }) {
           html={product.description}
         />
       ) : null}
-
-      {/* <AddToCart productId={product.id} /> */}
       <AddToCart product={product} />
     </>
   );

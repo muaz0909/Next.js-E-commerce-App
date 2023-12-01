@@ -70,7 +70,6 @@ export async function getProduct(handle: number): Promise<Product | undefined> {
 
     return product;
   } catch (error) {
-    console.error("Error fetching product:", error);
     return undefined;
   }
 }
@@ -134,8 +133,13 @@ export async function addItemToCart(cartId: string, productId: string, quantity:
     }
 
     const existingItemIndex = cart.items.findIndex(item => item.productId === productId);
-    if (existingItemIndex > -1) {
-      cart.items[existingItemIndex].quantity += quantity;
+    if (existingItemIndex !== -1) {
+      const existingItem = cart.items[existingItemIndex];
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        throw new Error('Existing item is undefined');
+      }
     } else {
       const product = await getProduct(parseInt(productId));
       cart.items.push({ productId, quantity, productTitle: product?.title || '', productImage: product?.image || '', productPrice: product?.price || 0 });
@@ -156,8 +160,13 @@ export async function updateCartItem(cartId: string, productId: string, quantity
   }
 
   const itemIndex = cart.items.findIndex(item => item.productId === productId);
-  if (itemIndex > -1) {
-    cart.items[itemIndex].quantity = quantity;
+  if (itemIndex !== -1) {
+    const cartItem = cart.items[itemIndex];
+    if (cartItem) {
+      cartItem.quantity = quantity;
+    } else {
+      throw new Error('Invalid item in cart');
+    }
   } else {
     throw new Error('Item not found in cart');
   }
@@ -173,7 +182,7 @@ export async function removeItemFromCart(cartId: string, productId: string): Pro
       throw new Error('Cart not found');
     }
 
-    const updatedItems = cart.items.filter(item => item.productId !== productId?.item);
+    const updatedItems = cart.items.filter(item => item.productId !== productId);
 
     cart.items = updatedItems;
     storeCartInSession(cart, cartId);

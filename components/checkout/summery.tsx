@@ -1,10 +1,15 @@
 'use client'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import Price from 'components/price';
+import { CommerceCart } from 'lib/commerce/types';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-const CheckoutSummery: React.FC = ({ cart }) => {
+interface CheckoutSummeryProps {
+    cart: CommerceCart | null;
+}
+
+const CheckoutSummery: React.FC<CheckoutSummeryProps> = ({ cart }) => {
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {

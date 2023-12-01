@@ -6,12 +6,11 @@ import LoadingDots from 'components/loading-dots';
 import { useState } from 'react';
 import { removeItem } from './actions';
 
-export function DeleteItemButton(item: string) {
+export function DeleteItemButton({ product }: { product: string }) {
   const [pending, setPending] = useState(false);
 
   const handleRemoveFromCart = async () => {
-    setPending(true);
-    await removeItem(item);
+    await removeItem(product);
     setPending(false);
   }
 

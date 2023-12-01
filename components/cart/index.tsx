@@ -7,7 +7,7 @@ export default async function Cart() {
   let cart;
 
   if (cartId) {
-    cart = await getCart(cartId);
+    cart = await getCart(cartId) || undefined;
   }
 
   return <CartModal cart={cart} />;

@@ -71,7 +71,7 @@ export default function CartModal({ cart }: { cart: CommerceCart | undefined }) 
                 </button>
               </div>
 
-              {!cart || cart.items.length === 0 ? (
+              {!cart || cart?.items?.length === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingCartIcon className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">Your cart is empty.</p>
@@ -79,7 +79,7 @@ export default function CartModal({ cart }: { cart: CommerceCart | undefined }) 
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden p-1">
                   <ul className="flex-grow overflow-auto py-4">
-                    {cart.items.map((item, i) => {
+                    {cart?.items?.map((item, i) => {
                       return (
                         <li
                           key={i}
@@ -87,7 +87,7 @@ export default function CartModal({ cart }: { cart: CommerceCart | undefined }) 
                         >
                           <div className="relative flex w-full flex-row justify-between px-1 py-4">
                             <div className="absolute z-40 -mt-2 ml-[55px]">
-                              <DeleteItemButton item={item?.productId} />
+                              <DeleteItemButton product={item?.productId} />
                             </div>
                             <Link
                               href='#'
