@@ -1,3 +1,4 @@
+"use client"
 import Grid from "components/grid";
 import Footer from "components/layout/footer";
 import { getCart } from "lib/commerce";
